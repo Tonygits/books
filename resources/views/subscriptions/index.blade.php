@@ -53,8 +53,12 @@
                                 	<td>{{ $item->amount }}</td>
                                 	<td>{{ $item->created_at }}</td>
                                 	<td>
+                                        @permission('edit_subscriptions')
 		                                <a href="{{ url('subscriptions/edit',['id'=>$item->id]) }}" title="Edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                                        @endpermission
+                                        @permission('list_edits')
 		                                <a href="{{ url('/edits/index',['id'=>$item->id]) }}" title="See edits"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                                        @endpermission
 		                            </td>
                                 	</tr>
                                 	<?php $n++;?>

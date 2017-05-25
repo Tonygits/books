@@ -8,7 +8,9 @@
     <div class="panel-body">
         Welcome to Digital Elimu
         <div class="pull-right">
+            @permission('create_content')
             <a href=" {{ url('content/create') }}" class="btn btn-primary">Create Content</a>
+            @endpermission
         </div>
         @if (session('status'))
             <div class="alert alert-success">
@@ -42,8 +44,12 @@
                             <td>{{ $content->audio }}</td>
                             <td>{{ $content->video }}</td>
                             <td>
+                                @permission('edit_content')
                                 <a href="{{ url('content/edit',['id'=>$content->id]) }}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                                @endpermission
+                                @permission('delete_content')
                                 <a href="{{ url('content/destroy',['id'=>$content->id]) }}" onclick="return confirm('Are you sure?')"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                @endpermission
                             </td>
                         </tr>
                     @endforeach

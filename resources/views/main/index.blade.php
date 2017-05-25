@@ -8,7 +8,9 @@
     <div class="panel-body">
         Welcome to Digital Elimu
         <div class="pull-right">
+            @permission('create_category')
             <a href=" {{ url('category/create') }}" class="btn btn-primary">Create Category</a>
+            @endpermission
         </div>
         @if (session('status'))
             <div class="alert alert-success">
@@ -33,11 +35,21 @@
                             <td>{{ $topic->activate }}</td>
                             <td><img src="{{ url('uploads/'.$topic->photo) }}" width="90px"></td>
                             <td>
+                                @permission('list_class')
                             	<a href="{{ url('class/index',['id'=>$topic->id]) }}"  title="Filter Classes"><i class="fa fa-filter" aria-hidden="true"></i></a>
+                                @endpermission
+                                @permission('create_class')
                                 <a href="{{ url('class/create',['id'=>$topic->id]) }}"  title="create Classes"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                                @endpermission
+                                @permission('edit_category')
                                 <a href="{{ url('category/edit',['id'=>$topic->id]) }}" title="Edit record"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                                @endpermission
+                                @permission('activate_category')
                                 <a href="{{ url('category/activate',['id'=>$topic->id]) }}" title="Activate"><i class="fa fa-check-circle" aria-hidden="true"></i></a>
+                                @endpermission
+                                @permission('delete_category')
                                 <a href="{{ url('category/destroy',['id'=>$topic->id]) }}"  title="Delete record" onclick="return confirm('Are you sure?')"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                @endpermission
                             </td>
                         </tr>
                     @endforeach
