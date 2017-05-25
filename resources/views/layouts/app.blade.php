@@ -21,7 +21,7 @@
     
     <!-- Scripts -->
     <script>
-        window.Laravel = <?php echo json_encode([
+        window.Laravel = <?= json_encode([
             'csrfToken' => csrf_token(),
         ]); ?>
     </script>
@@ -49,7 +49,11 @@
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
-                        &nbsp;
+                        &nbsp;  @role('admin_user')
+                        <li><a href="{{ route('users.index') }}">Users</a></li>
+                        <li><a href="{{ route('roles.index') }}">Roles</a></li>
+                        <li><a href="{{ route('permissions.index') }}">Permissions</a></li>
+                        @endrole
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -89,13 +93,27 @@
                     <div class="panel panel-default">
                         <div class="panel-heading">Menu</div>
                         <div class="panel-body">
+                            @permission('list_category')
                             <a class="btn" href="{{ url('/category/index') }}">Main</a>
+                            @endpermission
+                            @permission('list_class')
                             <a class="btn" href="{{ url('/class/index') }}">Classes</a>
+                            @endpermission
+                            @permission('list_book')
                             <a class="btn" href="{{ url('/book/index') }}">Books</a>
+                            @endpermission
+                            @permission('list_content')
                             <a class="btn" href="{{ url('/content/index') }}">Content</a>
+                            @endpermission
+                            @permission('list_subscriptions')
                             <a class="btn" href="{{ url('/subscriptions/index') }}">Subscriptions</a>
+                            @endpermission
+                            @permission('list_reports')
                             <a class="btn" href="{{ url('/reports/index') }}">Reports</a>
+                            @endpermission
+                            @permission('list_clients')
                             <a class="btn" href="{{ url('/category/clients') }}">Clients</a>
+                            @endpermission
                         </div>
                     </div>
                 </div>
